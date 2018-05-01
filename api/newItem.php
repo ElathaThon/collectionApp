@@ -16,8 +16,6 @@ $description = $_POST['description'];
 
 $createItem = $op->createNewItem($uuid, $name, $description);
 
-echo $uuid;
-echo $description;
 if ($createItem != ""){
 	$arr->code = "1";
 	$arr->ok = "ok";
