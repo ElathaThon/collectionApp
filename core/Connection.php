@@ -42,6 +42,19 @@ class Connection{
     }
 
 
+    function getAllItems(){
+        $sql = "SELECT * FROM ".Constants::$ITEM_TABLE;
+        $sth = $this->dbh->prepare($sql);
+        $sth->execute(array());
+        $rawdata = array();
+        foreach ($sth->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $rawdata[] = $row;
+        }
+        $jSON = $rawdata;
+        return $jSON;
+    }
+
+
     function createNewImage($uuid, $uuidItem, $url){
         $sql = "INSERT INTO ".Constants::$IMAGE_TABLE." (".Constants::$IMAGE_UUID.", ".Constants::$IMAGE_UUID_ITEM.", ".Constants::$IMAGE_URL.") VALUES (?,?,?)";
         $sth = $this->dbh->prepare($sql);

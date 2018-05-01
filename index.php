@@ -16,23 +16,25 @@ require_once ('core/Ini.php');
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+<!-- Controller de la llista de elemts que tenim -->
+<script src="js/listItems_controller.js"></script>
+
 <!-- Controller del form de new item -->
 <script src="js/newItemForm_controller.js"></script>
 
 </head>
-<body>
+<body onLoad="loadList()">
 
 <div class="col-md-6 col-md-offset-3">
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
-        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-        <a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+
+    <h2>Items creats actualment</h2>
+    
+    <div class="list-group" id="listItems">
+
     </div>
 </div>
 
-<hr class="style11">
+<div class="col-md-6 col-md-offset-3"><hr class="style11"></div>
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">

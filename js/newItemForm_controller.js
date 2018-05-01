@@ -2,9 +2,9 @@
 $(function() {
     
     function after_form_submitted(data) {
-        if(data.result == 'success') {
-            
-        }
+        loadList();
+        document.getElementById('name').value = ''
+        document.getElementById('description').value = ''
     }
 
 	$('#newItem_form').submit(function(e) {
