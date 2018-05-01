@@ -12,15 +12,27 @@ require_once ('core/Ini.php');
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+<link rel="stylesheet" href="css/main.css" >
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <!-- Controller del form de new item -->
-<script src="newItemForm_controller.js"></script>
+<script src="js/newItemForm_controller.js"></script>
 
 </head>
 <body>
 
+<div class="col-md-6 col-md-offset-3">
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
+        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+        <a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+    </div>
+</div>
+
+<hr class="style11">
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
