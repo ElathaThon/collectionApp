@@ -31,10 +31,10 @@ class Connection{
     }
 
 
-    function createNewItem($uuid, $name){
-        $sql = "INSERT INTO ".Constants::$ITEM_TABLE." (".Constants::$ITEM_UUID.", ".Constants::$ITEM_NAME.") VALUES (?,?)";
+    function createNewItem($uuid, $name, $description){
+        $sql = "INSERT INTO ".Constants::$ITEM_TABLE." (".Constants::$ITEM_UUID.", ".Constants::$ITEM_NAME.", ".Constants::$ITEM_DESCRIPTION.") VALUES (?, ?, ?)";
         $sth = $this->dbh->prepare($sql);
-        if ($sth->execute(array($uuid,$name))){
+        if ($sth->execute(array($uuid,$name,$description))){
             return "ok";
         } else {
             return "ko";

@@ -10,11 +10,14 @@ $op = new Connection();
 
 $uuid = uniqid();
 $name = $_POST['name'];
+$description = $_POST['description'];
 //$name = "patata";
+//$description = "la description";
 
-$createItem = $op->createNewItem($uuid,$name);
+$createItem = $op->createNewItem($uuid, $name, $description);
 
 echo $uuid;
+echo $description;
 if ($createItem != ""){
 	$arr->code = "1";
 	$arr->ok = "ok";
