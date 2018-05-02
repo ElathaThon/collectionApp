@@ -77,7 +77,20 @@ class Connection{
         }
     }
 
+    function getItemImages($uuidItem){
+        $sql = "SELECT * FROM ".Constants::$IMAGE_TABLE." WHERE ".Constants::$IMAGE_UUID_ITEM." = ?" ;
+        $sth = $this->dbh->prepare($sql);
+        $sth->execute(array($uuidItem));
+        $rawdata = array();
+        foreach ($sth->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $rawdata[] = $row;
+        }
+        $jSON = $rawdata;
+        return $jSON;
+    }
+
 
 }
+
 
 ?>

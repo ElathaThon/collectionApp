@@ -34,7 +34,7 @@ $item = $item[0];
         <form role="form" method="POST" id="newImage_form" action="addImage.php">
             <div class="row">
 
-            	<input name="uuid" id="uuid" type="xhidden" <?php echo "value='".$item["uuid"]."'"; ?>>
+            	<input name="uuid" id="uuid" type="hidden" <?php echo "value='".$item["uuid"]."'"; ?>>
 
             	<div class="col-sm-6 form-group">
                     <label for="name">
@@ -66,7 +66,7 @@ $item = $item[0];
 <?php 
 
 $itemPhotos = $op->getItemImages($_GET['uuid']);
-
+//print_r($itemPhotos)
 ?>
 
 
@@ -76,10 +76,10 @@ $itemPhotos = $op->getItemImages($_GET['uuid']);
 	        for ($i = 0; $i < sizeof($itemPhotos); $i++){
 	            echo '
 	            <div class="gallery">
-					<a target="_blank" href="'.$itemPhotos[$i]["url"].'.jpg">
-					    <img src="'.$itemPhotos[$i]["url"].'.jpg" alt="Fjords" width="300" height="200">
+					<a target="_blank" href="images/'.$itemPhotos[$i]['url'].'">
+					    <img src="images/'.$itemPhotos[$i]['url'].'" alt="itemImage" width="300" height="200">
 				 	</a>
-				 	<div class="desc">Add a description of the image here</div>
+				 	<!--<div class="desc">Add a description of the image here</div>-->
 				</div>';
 	        }
 	        ?>

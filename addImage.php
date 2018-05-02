@@ -26,9 +26,7 @@ require_once ('core/Ini.php');
 $name = $_POST['name'];
 $description =$_POST['description'];
 $uuid = $_POST['uuid'];
-
-echo "> Dades: [name: " . $name . ", description: " . $description . ", uuid: " . $uuid . "]";
-
+//echo "> Dades: [name: " . $name . ", description: " . $description . ", uuid: " . $uuid . "]";
 
 ?>
 
