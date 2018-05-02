@@ -13,7 +13,7 @@ function loadList(){
             var stringList = "";
 
             $.each(data.items, function(index, value){
-                stringList = stringList + '<a href="#" class="list-group-item list-group-item-action">'+value.name+': '+value.description+'</a>';
+                stringList = stringList + '<a href="itemDetail.php?uuid='+value.uuid+'" class="list-group-item list-group-item-action">'+value.name+': '+value.description+'</a>';
     
             })
         
