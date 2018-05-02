@@ -17,7 +17,6 @@ require_once ('core/Ini.php');
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-
 </head>
 <body>
 
@@ -26,16 +25,16 @@ require_once ('core/Ini.php');
 $op = new Connection();
 $item = $op->getItemByUUID($_GET['uuid']);
 $item = $item[0];
-print_r($item);
+//print_r($item);
 ?>
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <h2><?php echo $item['name']; ?></h2>
-        <form role="form" method="POST" id="newImage_form">
+        <form role="form" method="POST" id="newImage_form" action="addImage.php">
             <div class="row">
 
-            	<input disabled name="uuid" id="uuid" type="hidden" <?php echo "value='".$item["uuid"]."'"; ?>>
+            	<input name="uuid" id="uuid" type="xhidden" <?php echo "value='".$item["uuid"]."'"; ?>>
 
             	<div class="col-sm-6 form-group">
                     <label for="name">
@@ -46,7 +45,9 @@ print_r($item);
                 <div class="col-sm-12 form-group">
                     <label for="name">
                         Description:</label>
-                    <textarea <?php echo "placeholder='".$item["description"]."'"; ?> class="form-control" type="textarea" id="description" name="description" xplaceholder="Your Message Here" maxlength="6000" rows="7"></textarea>
+                    <textarea class="form-control" type="textarea" id="description" name="description" maxlength="6000" rows="7">
+                    	<?php echo $item["description"]; ?>
+                	</textarea>
                 </div>
             </div>
             
@@ -62,16 +63,26 @@ print_r($item);
 </div>
 
 
+<?php 
+
+$itemPhotos = $op->getItemImages($_GET['uuid']);
+
+?>
+
+
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
-
-		<div class="gallery">
-			<a target="_blank" href="fjords.jpg">
-			    <img src="fjords.jpg" alt="Fjords" width="300" height="200">
-		 	</a>
-		 	<div class="desc">Add a description of the image here</div>
-		</div>
-
+	        <?php
+	        for ($i = 0; $i < sizeof($itemPhotos); $i++){
+	            echo '
+	            <div class="gallery">
+					<a target="_blank" href="'.$itemPhotos[$i]["url"].'.jpg">
+					    <img src="'.$itemPhotos[$i]["url"].'.jpg" alt="Fjords" width="300" height="200">
+				 	</a>
+				 	<div class="desc">Add a description of the image here</div>
+				</div>';
+	        }
+	        ?>
 	</div>
 </div>
 

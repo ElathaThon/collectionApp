@@ -1,0 +1,1 @@
+Aqui les imatges de l'aplicació
