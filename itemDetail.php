@@ -28,9 +28,20 @@ $item = $item[0];
 //print_r($item);
 ?>
 
+
+<script>
+function goBack() {
+    window.location.href = "index.php";
+
+}
+</script>
+
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <h2><?php echo $item['name']; ?></h2>
+
+        <button class="btn btn-danger right-back" onclick="goBack()">Go Back</button>
+
         <form role="form" method="POST" id="newImage_form" action="addImage.php">
             <div class="row">
 

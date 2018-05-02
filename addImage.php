@@ -30,29 +30,35 @@ $uuid = $_POST['uuid'];
 
 ?>
 
-<div class="col-sm-6 col-lg-5">
-<form action="createPhotosItem.php" id="addItemPhotos" name="addItemPhotos" method="POST" enctype="multipart/form-data" >
-	  <center><h4>Imatges relaiconades</h4></center>
-	   
-        <input type="hidden" name="uuidItem" id="uuidItem" <?php echo 'value="'.$uuid.'"'; ?> />
-        <table width="100%">
-            <tr>
-                <td>Selecciona las fotos relacionades amb el producte</td>
-                <td><input type="file" name="files[]" multiple/></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">Note: Formatos de imagen soportados: .jpeg, .jpg, .png, .gif</td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center"><input type="submit" value="Añadir fotos" id="selectedButton"/></td>
-            </tr>
-        </table>                                    
-    </form>
-	        
-	</div>
-</form>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+<style>body { padding-top:50px; }.navbar-inverse .navbar-nav > li > a { color: #DBE4E1; }</style>
 
 
+<div class="container">
+
+      <div style="max-width: 650px; margin: auto;">
+        <h1 class="page-header">Upload images for <?php echo $item['name']; ?></h1>
+        <p class="lead">Seleccionar imatges en .JPEG, .JPG, .PNG, .GIF</p>
+
+        <form action="createPhotosItem.php" id="addItemPhotos" name="addItemPhotos" method="POST" enctype="multipart/form-data">
+          
+          <input type="hidden" name="uuidItem" id="uuidItem" <?php echo 'value="'.$uuid.'"'; ?> />
+          <div class="form-group">
+            <input type="file" name="files[]" multiple required />
+          </div>
+
+
+          <button class="btn btn-lg btn-primary" id="upload-button" type="submit">Upload image</button>
+        </form>
+
+        <button style="position: absolute; top: 50px; right: 50px; border: 0;" class="btn btn-danger right-back" onclick="goBack()">Go Back</button>
+
+    </div>
 
  </body>
  </html>

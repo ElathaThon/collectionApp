@@ -46,7 +46,7 @@ require_once ('core/Ini.php');
             	<div class="col-sm-6 form-group">
                     <label for="name">
                         Name:</label>
-                    <input type="text" class="form-control" id="name" name="name"  maxlength="50">
+                    <input type="text" class="form-control" id="name" name="name"  maxlength="50" required>
                 </div>
 
                 <div class="col-sm-12 form-group">
@@ -58,7 +58,7 @@ require_once ('core/Ini.php');
             
             <div class="row">
                 <div class="col-sm-12 form-group">
-                    <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">Post It!</button>
+                    <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">New one!</button>
                 </div>
             </div>
 

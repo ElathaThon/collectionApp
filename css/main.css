@@ -3,3 +3,20 @@ hr.style11 {
 	background: url(http://ibrahimjabbari.com/english/images/hr-11.png) repeat-x 0 0;
     border: 0;
 }
+
+.right-back {
+	float: right;
+	background-color: yellow;
+}
+
+.test1 {
+	background-color: red;	
+}
+
+.test2 {
+	background-color: blue;	
+}
+
+.test3 {
+	background-color: green;	
+}
