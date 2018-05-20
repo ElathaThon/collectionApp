@@ -29,9 +29,9 @@ require_once ('core/Ini.php');
 
     <h2>Items creats actualment</h2>
     
-    <div class="list-group" id="listItems">
+    <ul class="list-group" id="listItems">
 
-    </div>
+    </ul>
 </div>
 
 <div class="col-md-6 col-md-offset-3"><hr class="style11"></div>

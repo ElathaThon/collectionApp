@@ -66,6 +66,16 @@ class Connection{
         return $jSON;
     }
 
+    function deleteItem($uuid){
+        $sql = "DELETE FROM ".Constants::$ITEM_TABLE." WHERE ".Constants::$ITEM_UUID." = ?";
+        $sth = $this->dbh->prepare($sql);
+        if ($sth->execute(array($uuid))){
+            return "ok";
+        } else {
+            return "ko";
+        }
+    }
+
 
     function createNewImage($uuid, $uuidItem, $url){
         $sql = "INSERT INTO ".Constants::$IMAGE_TABLE." (".Constants::$IMAGE_UUID.", ".Constants::$IMAGE_UUID_ITEM.", ".Constants::$IMAGE_URL.") VALUES (?,?,?)";
