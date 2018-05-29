@@ -1,4 +1,5 @@
 <?php 
+error_reporting(E_ALL ^ E_DEPRECATED ^ E_NOTICE ^ E_WARNING);
 require_once ('core/Ini.php');
 ?>
 
@@ -9,6 +10,7 @@ require_once ('core/Ini.php');
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
@@ -26,6 +28,10 @@ $op = new Connection();
 $item = $op->getItemByUUID($_GET['uuid']);
 $item = $item[0];
 //print_r($item);
+
+$itemPhotos = $op->getItemImages($_GET['uuid']);
+//print_r($itemPhotos)
+
 ?>
 
 
@@ -40,8 +46,9 @@ function goBack() {
     <div class="col-md-6 col-md-offset-3">
         <h2><?php echo $item['name']; ?></h2>
 
-        <button class="btn btn-danger right-back" onclick="goBack()">Go Back</button>
-
+        <div>
+            <button class="btn btn-danger right-back" onclick="goBack()">Go Back</button>
+        </div>
         <form role="form" method="POST" id="newImage_form" action="addImage.php">
             <div class="row">
 
@@ -62,11 +69,27 @@ function goBack() {
                 </div>
             </div>
             
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">Afegir una imatge</button>
-                </div>
-            </div>
+            <?php 
+            
+            if (empty($itemPhotos)) {
+                 $formSummit = '<div class="row">
+                    <div class="col-sm-12 form-group">
+                        <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">Afegir una imatge</button>
+                    </div>
+                </div>';
+
+            } else {
+                $formSummit = '<div class="row">
+                    <div class="col-sm-12 form-group">
+                        <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">Afegir una imatge</button>
+                        <button type="submit" class="btn btn-lg btn-warning btn-block" id="btnFavorite" onclick="starImage()"><i class="far fa-star"></i>  Favorite </button>
+                    </div>
+                </div>';
+            }
+
+            echo $formSummit;
+
+            ?>
 
         </form>
 
@@ -74,11 +97,7 @@ function goBack() {
 </div>
 
 
-<?php 
 
-$itemPhotos = $op->getItemImages($_GET['uuid']);
-//print_r($itemPhotos)
-?>
 
 
 <div class="row">
