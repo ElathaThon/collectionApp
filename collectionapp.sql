@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2018 a las 19:40:08
--- Versión del servidor: 10.1.30-MariaDB
--- Versión de PHP: 7.2.1
+-- Tiempo de generación: 29-05-2018 a las 10:01:16
+-- Versión del servidor: 10.1.29-MariaDB
+-- Versión de PHP: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -64,7 +64,12 @@ INSERT INTO `image` (`id`, `uuidItem`, `url`, `uuid`) VALUES
 (31, '5ae9e64c8d275', '5ae9ff523d581.jpg', '5ae9ff523d581'),
 (32, '5ae9e64c8d275', '5ae9ff523dad4.jpg', '5ae9ff523dad4'),
 (33, '5aea00011c133', '5aea00096523e.jpg', '5aea00096523e'),
-(34, '5aea00011c133', '5aea000967507.jpg', '5aea000967507');
+(34, '5aea00011c133', '5aea000967507.jpg', '5aea000967507'),
+(35, '5b0d056ae48a0', '5b0d0576502e8.jpg', '5b0d0576502e8'),
+(36, '5b0d056ae48a0', '5b0d057650ea0.jpg', '5b0d057650ea0'),
+(37, '5b0d056ae48a0', '5b0d057651a59.jpg', '5b0d057651a59'),
+(38, '5b0d056ae48a0', '5b0d0576558da.jpg', '5b0d0576558da'),
+(39, '5b0d056ae48a0', '5b0d057656493.jpg', '5b0d057656493');
 
 -- --------------------------------------------------------
 
@@ -76,18 +81,16 @@ CREATE TABLE `item` (
   `id` int(11) NOT NULL,
   `uuid` varchar(250) NOT NULL,
   `name` varchar(250) NOT NULL,
-  `description` varchar(250) NOT NULL
+  `description` varchar(250) NOT NULL,
+  `star_image` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `item`
 --
 
-INSERT INTO `item` (`id`, `uuid`, `name`, `description`) VALUES
-(21, '5ae8b57abcc4a', 'hola', 'bon dia'),
-(22, '5ae9e64c8d275', 'kitty', 'es un gat rosa'),
-(23, '5ae9ffe444f34', '', ''),
-(24, '5aea00011c133', 'dasda', '');
+INSERT INTO `item` (`id`, `uuid`, `name`, `description`, `star_image`) VALUES
+(25, '5b0d056ae48a0', 'patata', 'ñam!!', '');
 
 -- --------------------------------------------------------
 
@@ -213,13 +216,13 @@ ALTER TABLE `collection`
 -- AUTO_INCREMENT de la tabla `image`
 --
 ALTER TABLE `image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `item_collection`

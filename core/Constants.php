@@ -16,6 +16,7 @@ class Constants{
 	public static $ITEM_UUID = "uuid";
 	public static $ITEM_NAME = "name";
 	public static $ITEM_DESCRIPTION = "description";
+	public static $ITEM_STAR_IMAGE = "star_image";
 
 	public static $IMAGE_TABLE = "image";
 	public static $IMAGE_ID = "id";
