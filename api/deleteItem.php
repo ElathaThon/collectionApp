@@ -8,18 +8,19 @@ require_once ('../core/Ini.php');
 
 $op = new Connection();
 
-$name = $_POST['uuid'];
+$uuid = $_POST['uuid'];
 
-$createItem = $op->deleteItem($uuid);
+$deleteItem = $op->deleteItem($uuid);
 
-if ($createItem != ""){
+if ($deleteItem != ""){
 	$arr->code = "1";
 	$arr->ok = "ok";
-	$arr->createItem = $createItem;
+    $arr->uuid = $uuid;
+	$arr->deleteItem = $deleteItem;
 } else {
 	$arr->code = "-1";
 	$arr->ok = "ko";
-	$arr->createItem = "Error";
+	$arr->deleteItem = "Error";
 }
 
 echo json_encode($arr);

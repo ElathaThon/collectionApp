@@ -25,6 +25,9 @@ $uuid = $item['uuid'];
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+<!-- JS controller to delete items -->
+<script src="js/deleteItemController.js"></script>
+
 </head>
 <body>
 
@@ -40,11 +43,12 @@ $uuid = $item['uuid'];
         <p class="lead">Un cop eliminat no es podrà recuperar, totes les imatges d'aquest producte també es borraràn!</p>
         <p>Segur que el vols eliminar?</p>
 
-        <form action="api/deleteItem.php" id="deleteItem" name="deleteItem" method="POST" enctype="multipart/form-data">
+        <!--<form action="api/deleteItem.php" id="deleteItem" name="deleteItem" method="POST" enctype="multipart/form-data">-->
+        <form id="deleteItem" name="deleteItem" method="POST" enctype="multipart/form-data">
           
           <input type="hidden" name="uuid" id="uuid" <?php echo 'value="'.$uuid.'"'; ?> />
           
-          <button class="btn btn-lg btn-danger" id="upload-button" type="submit">Eliminar</button>
+          <button class="btn btn-lg btn-danger" id="upload-button" type="submit" onclick="deleteItemController()">Eliminar</button>
           <button class="btn btn-lg btn-primary" id="upload-button" formaction="index.php" type="submit">Cancelar</button>
         </form>
 
