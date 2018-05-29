@@ -102,7 +102,7 @@ class Connection{
     function updateStarItemImage($uuidItem, $uuidImage) {
         $sql = "UPDATE ".Constants::$ITEM_TABLE." SET ".Constants::$ITEM_STAR_IMAGE." = ? WHERE ".Constants::$ITEM_UUID." = ?";
         $sth = $this->dbh->prepare($sql);
-        if ($sth->execute(array($uuidItem,$uuidImage))){
+        if ($sth->execute(array($uuidImage, $uuidItem))){
             return "ok";
         } else {
             return "ko";

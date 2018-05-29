@@ -1,5 +1,4 @@
 <?php 
-error_reporting(E_ALL ^ E_DEPRECATED ^ E_NOTICE ^ E_WARNING);
 require_once ('core/Ini.php');
 ?>
 
@@ -82,7 +81,7 @@ function goBack() {
                 $formSummit = '<div class="row">
                     <div class="col-sm-12 form-group">
                         <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">Afegir una imatge</button>
-                        <button type="submit" class="btn btn-lg btn-warning btn-block" id="btnFavorite" onclick="starImage()"><i class="far fa-star"></i>  Favorite </button>
+                        <button class="btn btn-lg btn-warning btn-block" id="btnFavorite" formaction="starImage.php"><i class="far fa-star"></i>  Favorite </button>
                     </div>
                 </div>';
             }
