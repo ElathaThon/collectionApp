@@ -31,6 +31,8 @@ $item = $item[0];
 $itemPhotos = $op->getItemImages($_GET['uuid']);
 //print_r($itemPhotos)
 
+$favoriteImageUUID = $item['star_image'];
+
 ?>
 
 
@@ -96,20 +98,30 @@ function goBack() {
 </div>
 
 
-
-
-
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
 	        <?php
 	        for ($i = 0; $i < sizeof($itemPhotos); $i++){
-	            echo '
-	            <div class="gallery">
-					<a target="_blank" href="images/'.$itemPhotos[$i]['url'].'">
-					    <img src="images/'.$itemPhotos[$i]['url'].'" alt="itemImage" width="300" height="200">
-				 	</a>
-				 	<!--<div class="desc">Add a description of the image here</div>-->
-				</div>';
+
+                if ($favoriteImageUUID == $itemPhotos[$i]['uuid']) {
+                    echo '
+                    <div class="gallery favorite">
+                        <a target="_blank" href="images/'.$itemPhotos[$i]['url'].'">
+                            <img src="images/'.$itemPhotos[$i]['url'].'" alt="itemImage" width="300" height="300">
+                        </a>
+                    </div>';
+                
+                } else {
+	               echo '
+    	            <div class="gallery">
+    					<a target="_blank" href="images/'.$itemPhotos[$i]['url'].'">
+    					    <img src="images/'.$itemPhotos[$i]['url'].'" alt="itemImage" width="300" height="200">
+    				 	</a>
+    				</div>';
+                }
+
+
+
 	        }
 	        ?>
 	</div>

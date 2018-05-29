@@ -19,3 +19,13 @@ div.desc {
     padding: 15px;
     text-align: center;
 }
+
+div.favorite img {
+    border: 2px solid red;
+
+/*
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    */
+}

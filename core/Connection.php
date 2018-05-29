@@ -110,6 +110,21 @@ class Connection{
     }
 
 
+    function getFavoriteImage($uuidItem) {
+        //$sql = "SELECT ".Constants::$IMAGE_TABLE.".".Constants::$IMAGE_URL." FROM ".Constants::$IMAGE_TABLE." INNER JOIN ".Constants::$ITEM_TABLE." ON ".Constants::$ITEM_TABLE.".".Constants::$ITEM_STAR_IMAGE." = ".Constants::$IMAGE_TABLE.".".Constants::$IMAGE_UUID." WHERE ".Constants::$ITEM_TABLE.".".Constants::$ITEM_UUID." = ?" ;
+
+        $sql = "SELECT * FROM ".Constants::$IMAGE_TABLE." INNER JOIN ".Constants::$ITEM_TABLE." ON ".Constants::$ITEM_TABLE.".".Constants::$ITEM_STAR_IMAGE." = ".Constants::$IMAGE_TABLE.".".Constants::$IMAGE_UUID." WHERE ".Constants::$ITEM_TABLE.".".Constants::$ITEM_UUID." = ?" ;
+        
+        $sth = $this->dbh->prepare($sql);
+        $sth->execute(array($uuidItem));
+        $rawdata = array();
+        foreach ($sth->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $rawdata[] = $row;
+        }
+        $jSON = $rawdata;
+        return $jSON;
+    }
+
 }
 
 
