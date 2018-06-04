@@ -18,8 +18,18 @@ function loadList(){
                 '</a>';
 */
 
+                var imageSpan = '<img class="imageList" src="images/default.jpeg">';
+
+                if (value.url != null) {
+                    console.log("Si que te image!!" + value.url)
+                    imageSpan = '<img class="imageList" src="images/' + value.url + '">';
+                }
+
                 stringList = stringList + `
                 <li class="list-group-item clearfix">
+                    `
+                    + imageSpan +
+                    `
                     `+value.name+` : `+value.description+`
                     <span class="pull-right button-group">
                         <a href="itemDetail.php?uuid=`+value.uuid+`" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a> 

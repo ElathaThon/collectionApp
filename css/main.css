@@ -20,3 +20,9 @@ hr.style11 {
 .test3 {
 	background-color: green;	
 }
+
+.imageList{
+    xwidth: 30px;
+    height: 40px;
+    margin-right: 5px;
+}
