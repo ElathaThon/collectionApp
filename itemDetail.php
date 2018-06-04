@@ -16,7 +16,10 @@ require_once ('core/Ini.php');
 <link rel="stylesheet" href="css/main.css" >
 <link rel="stylesheet" href="css/gallery.css" >
 
+<script src="js/detailController.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 
 </head>
 <body>
@@ -41,17 +44,51 @@ function goBack() {
     window.location.href = "index.php";
 
 }
+
+
+function save() {
+    var params = {
+       "uuid" : document.getElementById('uuid').value,
+       "name" : document.getElementById('name').value,
+       "description": document.getElementById('description').value
+    };
+    
+    console.log(params)
+
+    $.ajax({
+        type: "POST",
+        url: 'api/updateItem.php',
+        data: params,
+        dataType: "json",
+        success: function(data) {
+            console.log(data);
+
+            //window.location.href = 'index.php'
+            
+        }
+    });
+}
+
 </script>
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <h2><?php echo $item['name']; ?></h2>
 
-        <div>
-            <button class="btn btn-danger right-back" onclick="goBack()">Go Back</button>
-        </div>
+                <div style="float:right;">
+                    <div class="row">
+                        <button class="btn btn-danger right-back" style="width: 80px;" onclick="goBack()">Go Back</button>
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                        <button class="btn btn-primary right-back" style="width: 80px;" onclick="save()">Guardar</button>
+                    </div>
+                </div>
+
+
         <form role="form" method="POST" id="newImage_form" action="addImage.php">
             <div class="row">
+
+
 
             	<input name="uuid" id="uuid" type="hidden" <?php echo "value='".$item["uuid"]."'"; ?>>
 
@@ -97,26 +134,36 @@ function goBack() {
     </div>
 </div>
 
+<script>
+    function imageSelected(uuidImage){
+        console.log("Imatge amb uuid: " + uuidImage)
+
+
+
+    }
+
+</script>
 
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
 	        <?php
 	        for ($i = 0; $i < sizeof($itemPhotos); $i++){
-
-                if ($favoriteImageUUID == $itemPhotos[$i]['uuid']) {
+                $uuidImage =  $itemPhotos[$i]['uuid'];
+                if ($favoriteImageUUID == $uuidImage) {
                     echo '
-                    <div class="gallery favorite">
-                        <a target="_blank" href="images/'.$itemPhotos[$i]['url'].'">
-                            <img src="images/'.$itemPhotos[$i]['url'].'" alt="itemImage" width="300" height="300">
-                        </a>
+                    <div class="gallery favorite img-wrap">
+                        <span class="close" onclick="deleteImage(\''.$uuidImage.'\')">&times;</span>
+                        <!--<a onclick="imageSelected(\''.$uuidImage.'\')" href="javascript:void(0);">-->
+                            <img src="images/'.$itemPhotos[$i]['url'].'" width="300" height="300" data-id="'.$uuidImage.'">
+                        <!--</a>-->
                     </div>';
-                
                 } else {
 	               echo '
-    	            <div class="gallery">
-    					<a target="_blank" href="images/'.$itemPhotos[$i]['url'].'">
-    					    <img src="images/'.$itemPhotos[$i]['url'].'" alt="itemImage" width="300" height="200">
-    				 	</a>
+    	            <div class="gallery img-wrap">
+                        <span class="close" onclick="deleteImage(\''.$uuidImage.'\')">&times;</span>
+    					<!--<a onclick="imageSelected(\''.$uuidImage.'\')" href="javascript:void(0);">-->
+    					    <img src="images/'.$itemPhotos[$i]['url'].'" width="300" height="200" data-id="'.$uuidImage.'">
+    				 	<!--</a>-->
     				</div>';
                 }
 
@@ -126,7 +173,6 @@ function goBack() {
 	        ?>
 	</div>
 </div>
-
 
 </body>
 </html>

@@ -146,6 +146,27 @@ class Connection{
         return $jSON[0]['url'];
     }
 
+
+    function updateItem($uuidItem, $name, $description) {
+        $sql = "UPDATE ".Constants::$ITEM_TABLE." SET ".Constants::$ITEM_NAME." = ?, ".Constants::$ITEM_DESCRIPTION." = ? WHERE ".Constants::$ITEM_UUID." = ?";
+        $sth = $this->dbh->prepare($sql);
+        if ($sth->execute(array($name, $description, $uuidItem))){
+            return "ok";
+        } else {
+            return "ko";
+        }
+    }
+
+    function deleteImage($uuid){
+        $sql = "DELETE FROM ".Constants::$IMAGE_TABLE." WHERE ".Constants::$IMAGE_UUID." = ?";
+        $sth = $this->dbh->prepare($sql);
+        if ($sth->execute(array($uuid))){
+            return "ok";
+        } else {
+            return "ko";
+        }
+    }
+
 }
 
 
