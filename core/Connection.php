@@ -47,8 +47,16 @@ class Connection{
         $sth = $this->dbh->prepare($sql);
         $sth->execute(array());
         $rawdata = array();
+        $i = 0;
         foreach ($sth->fetchAll(PDO::FETCH_ASSOC) as $row) {
             $rawdata[] = $row;
+            $uuidImage = $row['star_image'];
+
+            $image = $this->getUrlImage($uuidImage);
+            $rawdata[$i]['url'] = $image;
+
+            //print_r($rawdata);
+            $i++;
         }
         $jSON = $rawdata;
         return $jSON;
@@ -123,6 +131,19 @@ class Connection{
         }
         $jSON = $rawdata;
         return $jSON;
+    }
+
+
+    function getUrlImage($uuidImage) {
+        $sql = "SELECT ".Constants::$IMAGE_URL." FROM ".Constants::$IMAGE_TABLE." WHERE ".Constants::$IMAGE_UUID." = ?" ;
+        $sth = $this->dbh->prepare($sql);
+        $sth->execute(array($uuidImage));
+        $rawdata = array();
+        foreach ($sth->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $rawdata[] = $row;
+        }
+        $jSON = $rawdata;
+        return $jSON[0]['url'];
     }
 
 }
