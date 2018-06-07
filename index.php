@@ -33,7 +33,14 @@ $login_url = 'https://accounts.google.com/o/oauth2/v2/auth?scope=' . urlencode('
 <body onLoad="loadList()">
 
 
-
+<?php 
+if (false) {
+    $op = new Connection();
+    echo "<pre>Test connection to DDBB:";
+    print_r($op->getAllItems());
+    echo "</pre>";
+}
+?>
 
 <!--<a href="<?= $login_url ?>">Login with Google</a>-->
 
