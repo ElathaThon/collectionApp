@@ -7,3 +7,5 @@ out/
 *.jpeg
 *.png
 *.gif
+
+core/Constants.php

@@ -1,5 +1,7 @@
 <?php
-class Connection{
+
+
+class Connection {
 
     private $dbh = NULL;
 
@@ -45,6 +47,8 @@ class Connection{
     function getAllItems(){
         $sql = "SELECT * FROM ".Constants::$ITEM_TABLE;
         $sth = $this->dbh->prepare($sql);
+        //echo "Dins del getAllitems SQL: " . $sql;
+        
         $sth->execute(array());
         $rawdata = array();
         $i = 0;

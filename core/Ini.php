@@ -6,4 +6,5 @@ error_reporting(0);
 
 require_once 'Connection.php';
 require_once 'Constants.php';
+
 ?>

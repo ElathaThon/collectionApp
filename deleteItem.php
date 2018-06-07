@@ -31,8 +31,6 @@ $uuid = $item['uuid'];
 </head>
 <body>
 
-<h1><?php echo $uuid ?></h1>
-
 <style>body { padding-top:50px; }.navbar-inverse .navbar-nav > li > a { color: #DBE4E1; }</style>
 
 
