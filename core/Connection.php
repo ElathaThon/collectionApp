@@ -167,6 +167,65 @@ class Connection{
         }
     }
 
+
+    function userExists($uuid){
+        $sql = "SELECT * FROM ".Constants::$USER_TABLE." WHERE ".Constants::$USER_UUID." = ?" ;
+        
+        $sth = $this->dbh->prepare($sql);
+        $sth->execute(array($uuid));
+        
+        if($sth->rowCount() > 0){
+            $this->updateLoginUser($uuid);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    function newUser($uuid, $gender, $name, $email){
+        $sql = "INSERT INTO ".Constants::$USER_TABLE." (".Constants::$USER_UUID.", ".Constants::$USER_GENDER.", ".Constants::$USER_NAME.", ".Constants::$USER_EMAIL.", ".Constants::$USER_LAST_LOGIN.") VALUES (?,?,?,?,?)";
+        $sth = $this->dbh->prepare($sql);
+
+        $timestamp = $this->getDateStamp();
+
+        if ($sth->execute(array($uuid, $gender, $name, $email, $timestamp))){
+            return "ok";
+        } else {
+            return "ko";
+        }
+    }
+
+    function updateLoginUser($uuid){
+        $sql = "UPDATE ".Constants::$USER_TABLE." SET ".Constants::$USER_LAST_LOGIN." = ? WHERE ".Constants::$USER_UUID." = ?";
+
+        $timestamp = $this->getDateStamp();
+
+        $sth = $this->dbh->prepare($sql);
+        if ($sth->execute(array($timestamp, $uuid))){
+            return "ok";
+        } else {
+            return "ko";
+        } 
+    }
+
+
+
+
+
+
+    function getDateStamp() {
+    $date_array = getdate();
+
+    $formated_date .= $date_array['mday'] . "/";
+    $formated_date .= $date_array['mon'] . "/";
+    $formated_date .= $date_array['year'];
+
+    return $formated_date;
+
+    }
+
+
 }
 
 
