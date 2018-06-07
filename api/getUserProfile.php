@@ -1,4 +1,5 @@
 <?php
+//http://usefulangle.com/post/9/google-login-api-with-php-curl
 session_start();
 
 // Holds the Google application Client Id, Client Secret and Redirect Url
@@ -25,6 +26,10 @@ if(isset($_GET['code'])) {
 
         // Now that the user is logged in you may want to start some session variables
         $_SESSION['logged_in'] = 1;
+        $_SESSION['email'] = $user_info['emails'][0]['value'];
+        $_SESSION['userName'] = $user_info['displayName'];
+        $_SESSION['gender'] = $user_info['gender'];
+        $_SESSION['userUUID'] = $user_info['id'];
 
         // You may now want to redirect the user to the home page of your website
         header('Location: ../index.php');

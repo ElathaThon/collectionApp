@@ -1,4 +1,6 @@
 <?php 
+session_start();
+
 require_once ('core/Ini.php');
 require_once('core/settings.php');
 
@@ -44,6 +46,9 @@ $login_url = 'https://accounts.google.com/o/oauth2/v2/auth?scope=' . urlencode('
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
+
+        <h1><?php echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>'; ?></h1>
+
         <h2>New item</h2>
         <p>Crear un nou item</p>
         <form role="form" method="POST" id="newItem_form">
