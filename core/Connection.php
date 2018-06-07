@@ -7,8 +7,8 @@ class Connection{
 
         $dbHost = Constants::$HOST;
         $dbName = Constants::$DATABASE;
-        $dbUser = Constants::$USER_NAME;
-        $dbPassword = Constants::$PASSWORD;
+        $dbUser = Constants::$DB_USER_NAME;
+        $dbPassword = Constants::$DB_PASSWORD;
         
         try {
             $this->dbh = new PDO("mysql:host=$dbHost;dbname=$dbName",$dbUser,$dbPassword,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
@@ -184,7 +184,7 @@ class Connection{
 
 
     function newUser($uuid, $gender, $name, $email){
-        $sql = "INSERT INTO ".Constants::$USER_TABLE." (".Constants::$USER_UUID.", ".Constants::$USER_GENDER.", ".Constants::$USER_NAME.", ".Constants::$USER_EMAIL.", ".Constants::$USER_LAST_LOGIN.") VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO ".Constants::$USER_TABLE." (".Constants::$USER_UUID.", ".Constants::$USER_GENDER.", ".Constants::$USER_NICK.", ".Constants::$USER_EMAIL.", ".Constants::$USER_LAST_LOGIN.") VALUES (?,?,?,?,?)";
         $sth = $this->dbh->prepare($sql);
 
         $timestamp = $this->getDateStamp();
@@ -222,7 +222,7 @@ class Connection{
     $formated_date .= $date_array['year'];
     //return $formated_date;
 
-    return date("d/m/y G:i:s<br>", time());
+    return date("d/m/y G:i:s");
 
     }
 

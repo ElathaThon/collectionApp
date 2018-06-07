@@ -6,11 +6,10 @@
 */
 class Constants{
 
-
 	public static $HOST = "localhost";
-	public static $DATABASE = "collectionapp";
-	public static $USER_NAME = "root";
-	public static $PASSWORD = "";
+	public static $DATABASE = "topoinvejlsqlabc";
+	public static $DB_USER_NAME = "root";
+	public static $DB_PASSWORD = "";
 
 	public static $ITEM_TABLE = "colapp_item";
 	public static $ITEM_ID = "id";
@@ -18,8 +17,8 @@ class Constants{
 	public static $ITEM_NAME = "name";
 	public static $ITEM_DESCRIPTION = "description";
 	public static $ITEM_STAR_IMAGE = "star_image";
-	public static $USER_ID = "userID";
-	public static $PUBLIC = "public";
+	public static $ITEM_USER_ID = "userID";
+	public static $ITEM_PUBLIC = "public";
 
 	public static $IMAGE_TABLE = "colapp_image";
 	public static $IMAGE_ID = "id";
@@ -31,7 +30,7 @@ class Constants{
 	public static $USER_ID = "id";
 	public static $USER_UUID = "uuid";
 	public static $USER_GENDER = "gender";
-	public static $USER_NAME = "name";
+	public static $USER_NICK = "name";
 	public static $USER_EMAIL = "email";
 	public static $USER_LAST_LOGIN = "lastlogin";
 
