@@ -19,6 +19,7 @@ $login_url = 'https://accounts.google.com/o/oauth2/v2/auth?scope=' . urlencode('
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
 <link rel="stylesheet" href="css/main.css" >
+<link rel="stylesheet" href="css/googleLoginButton.css" >
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
@@ -31,9 +32,21 @@ $login_url = 'https://accounts.google.com/o/oauth2/v2/auth?scope=' . urlencode('
 </head>
 <body onLoad="loadList()">
 
-<a href="<?= $login_url ?>">Login with Google</a>
+
+
+
+<!--<a href="<?= $login_url ?>">Login with Google</a>-->
 
 <div class="col-md-6 col-md-offset-3">
+
+    <div class="omb_login pull-right">
+    <div class="row omb_row-sm-offset-3 omb_socialButtons">
+            <a href="<?= $login_url ?>" class="btn btn-lg btn-block omb_btn-google">
+                <i class="fa fa-google-plus visible-xs"></i>
+                <span class="hidden-xs">Login Google+ <i class="fab fa-google-plus"></i></span>
+            </a>
+        </div>
+    </div>
 
     <h2>Items creats actualment</h2>
     
