@@ -24,6 +24,8 @@ if(isset($_GET['code'])) {
 
         echo '<pre>';print_r($user_info); echo '</pre>';
 
+        //echo json_encode($user_info);
+
         // Now that the user is logged in you may want to start some session variables
         $_SESSION['logged_in'] = 1;
         $_SESSION['email'] = $user_info['emails'][0]['value'];
