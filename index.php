@@ -1,5 +1,9 @@
 <?php 
 require_once ('core/Ini.php');
+require_once('core/settings.php');
+
+$login_url = 'https://accounts.google.com/o/oauth2/v2/auth?scope=' . urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me') . '&redirect_uri=' . urlencode(CLIENT_REDIRECT_URL) . '&response_type=code&client_id=' . CLIENT_ID . '&access_type=online';
+
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +28,8 @@ require_once ('core/Ini.php');
 
 </head>
 <body onLoad="loadList()">
+
+<a href="<?= $login_url ?>">Login with Google</a>
 
 <div class="col-md-6 col-md-offset-3">
 
