@@ -38,6 +38,7 @@ if (false) {
     $op = new Connection();
     echo "<pre>Test connection to DDBB:";
     print_r($op->getAllItems());
+    echo "timestamp: " . $op->getDateStamp();
     echo "</pre>";
 }
 ?>
