@@ -33,6 +33,7 @@ class Constants{
 	public static $USER_GENDER = "gender";
 	public static $USER_NAME = "name";
 	public static $USER_EMAIL = "email";
+	public static $USER_LAST_LOGIN = "lastlogin";
 
 }
 
