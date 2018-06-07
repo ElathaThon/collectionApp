@@ -2,6 +2,7 @@
 out/
 *.iml
 
+core/settings.php
 
 *.jpg
 *.jpeg
