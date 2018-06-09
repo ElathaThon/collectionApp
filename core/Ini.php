@@ -4,7 +4,12 @@
 //no error
 error_reporting(0);
 
-require_once 'Connection.php';
+require_once 'DbConnection.php';
+
 require_once 'Constants.php';
+
+require_once'settings.php';
+
+require_once 'Connection.php';
 
 ?>

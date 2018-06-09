@@ -7,10 +7,10 @@ class Connection {
 
     function Connection(){
 
-        $dbHost = Constants::$HOST;
-        $dbName = Constants::$DATABASE;
-        $dbUser = Constants::$DB_USER_NAME;
-        $dbPassword = Constants::$DB_PASSWORD;
+        $dbHost = DbConnection::$HOST;
+        $dbName = DbConnection::$DATABASE;
+        $dbUser = DbConnection::$DB_USER_NAME;
+        $dbPassword = DbConnection::$DB_PASSWORD;
         
         try {
             $this->dbh = new PDO("mysql:host=$dbHost;dbname=$dbName",$dbUser,$dbPassword,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
