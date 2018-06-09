@@ -45,6 +45,11 @@ class Item {
 
     }
 
+
+    /**
+     * Return an of all the items in the DDBB
+     * @return array
+     */
     function getAllItems(){
         $sql = "SELECT * FROM ".$this::$ITEM_TABLE;
         $sth = $this->dbh->prepare($sql);
@@ -68,6 +73,13 @@ class Item {
     }
 
 
+    /**
+     * Update the item of the given uuid in the DDBB
+     * @param $uuidItem
+     * @param $name
+     * @param $description
+     * @return string
+     */
     function updateItem($uuidItem, $name, $description) {
         $sql = "UPDATE ".$this::$ITEM_TABLE." SET ".$this::$ITEM_NAME." = ?, ".$this::$ITEM_DESCRIPTION." = ? WHERE ".$this::$ITEM_UUID." = ?";
 
@@ -79,7 +91,15 @@ class Item {
         }
     }
 
-     function createNewItem($uuid, $name, $description){
+
+    /**
+     * Create a new item in the DDBB
+     * @param $uuid
+     * @param $name
+     * @param $description
+     * @return string
+     */
+    function createNewItem($uuid, $name, $description){
         $sql = "INSERT INTO ".$this::$ITEM_TABLE." (".$this::$ITEM_UUID.", ".$this::$ITEM_NAME.", ".$this::$ITEM_DESCRIPTION.") VALUES (?, ?, ?)";
         $sth = $this->dbh->prepare($sql);
         if ($sth->execute(array($uuid,$name,$description))){
@@ -90,6 +110,11 @@ class Item {
     }
 
 
+    /**
+     * Return the item that have the given uuid
+     * @param $uuid
+     * @return array
+     */
     function getItemByUUID($uuid){
         $sql = "SELECT * FROM ".$this::$ITEM_TABLE." WHERE ".$this::$ITEM_UUID." = ?" ;
         $sth = $this->dbh->prepare($sql);
@@ -102,6 +127,12 @@ class Item {
         return $jSON;
     }
 
+
+    /**
+     * Delete the item with the given uuid from the DDBB
+     * @param $uuid
+     * @return string
+     */
     function deleteItem($uuid){
         $sql = "DELETE FROM ".$this::$ITEM_TABLE." WHERE ".$this::$ITEM_UUID." = ?";
         
@@ -113,6 +144,13 @@ class Item {
         }
     }
 
+
+    /**
+     * Update favorite image that have the item with the uuidGiven
+     * @param $uuidItem
+     * @param $uuidImage
+     * @return string
+     */
     function updateStarItemImage($uuidItem, $uuidImage) {
         $sql = "UPDATE ".$this::$ITEM_TABLE." SET ".$this::$ITEM_STAR_IMAGE." = ? WHERE ".$this::$ITEM_UUID." = ?";
         $sth = $this->dbh->prepare($sql);

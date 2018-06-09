@@ -42,6 +42,11 @@ class User {
     }
 
 
+    /**
+     * Return if the user with the uuid given exists in the database
+     * @param $uuid
+     * @return bool
+     */
     function userExists($uuid){
         $sql = "SELECT * FROM ".$this::$USER_TABLE." WHERE ".$this::$USER_UUID." = ?" ;
         //echo "userExists: " . $sql;
@@ -58,6 +63,14 @@ class User {
     }
 
 
+    /**
+     * Create a new user in the Database
+     * @param $uuid
+     * @param $gender
+     * @param $name
+     * @param $email
+     * @return string
+     */
     function newUser($uuid, $gender, $name, $email){
         $sql = "INSERT INTO ".$this::$USER_TABLE." (".$this::$USER_UUID.", ".$this::$USER_GENDER.", ".$this::$USER_NICK.", ".$this::$USER_EMAIL.", ".$this::$USER_LAST_LOGIN.") VALUES (?,?,?,?,?)";
         //echo "newUser: " . $sql;
@@ -73,6 +86,12 @@ class User {
         }
     }
 
+
+    /**
+     * Update the login field of the user to know when was the last time the used has been connected
+     * @param $uuid
+     * @return string
+     */
     function updateLoginUser($uuid){
         $sql = "UPDATE ".$this::$USER_TABLE." SET ".$this::$USER_LAST_LOGIN." = ? WHERE ".$this::$USER_UUID." = ?";
         //echo "updateLoginUser: " . $sql;

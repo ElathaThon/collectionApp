@@ -29,7 +29,14 @@ class Image {
     }
 
 
-function createNewImage($uuid, $uuidItem, $url){
+    /**
+     * Creates a new image
+     * @param $uuid
+     * @param $uuidItem
+     * @param $url
+     * @return string
+     */
+    function createNewImage($uuid, $uuidItem, $url){
         $sql = "INSERT INTO ".$this::$IMAGE_TABLE." (".$this::$IMAGE_UUID.", ".$this::$IMAGE_UUID_ITEM.", ".$this::$IMAGE_URL.") VALUES (?,?,?)";
         $sth = $this->dbh->prepare($sql);
         if ($sth->execute(array($uuid,$uuidItem,$url))){
@@ -39,6 +46,12 @@ function createNewImage($uuid, $uuidItem, $url){
         }
     }
 
+
+    /**
+     * Return all the images that have the item with the uuid given
+     * @param $uuidItem
+     * @return array
+     */
     function getItemImages($uuidItem){
         $sql = "SELECT * FROM ".$this::$IMAGE_TABLE." WHERE ".$this::$IMAGE_UUID_ITEM." = ?" ;
         $sth = $this->dbh->prepare($sql);
@@ -52,6 +65,11 @@ function createNewImage($uuid, $uuidItem, $url){
     }
 
 
+    /**
+     * Return the image that is the favorite from the item given
+     * @param $uuidItem
+     * @return array
+     */
     function getFavoriteImage($uuidItem) {
         //$sql = "SELECT ".$this::$IMAGE_TABLE.".".$this::$IMAGE_URL." FROM ".$this::$IMAGE_TABLE." INNER JOIN ".$this::$ITEM_TABLE." ON ".$this::$ITEM_TABLE.".".$this::$ITEM_STAR_IMAGE." = ".$this::$IMAGE_TABLE.".".$this::$IMAGE_UUID." WHERE ".$this::$ITEM_TABLE.".".$this::$ITEM_UUID." = ?" ;
 
@@ -68,6 +86,11 @@ function createNewImage($uuid, $uuidItem, $url){
     }
 
 
+    /**
+     * Return the url of the image with the uuid given
+     * @param $uuidImage
+     * @return string
+     */
     function getUrlImage($uuidImage) {
         $sql = "SELECT ".$this::$IMAGE_URL." FROM ".$this::$IMAGE_TABLE." WHERE ".$this::$IMAGE_UUID." = ?" ;
         //echo "Connection->getUrlImage: " . $sql;
@@ -82,8 +105,11 @@ function createNewImage($uuid, $uuidItem, $url){
     }
 
 
-
-
+    /**
+     * Removes the image from the Database
+     * @param $uuid
+     * @return string
+     */
     function deleteImage($uuid){
         $sql = "DELETE FROM ".$this::$IMAGE_TABLE." WHERE ".$this::$IMAGE_UUID." = ?";
         $sth = $this->dbh->prepare($sql);
