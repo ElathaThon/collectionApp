@@ -26,7 +26,6 @@ class Connection {
 
 
 
-
     function test(){ return "Hola, soc la classe Connection!!"; }
     function getConnection(){ return $this->conn; }
 }
