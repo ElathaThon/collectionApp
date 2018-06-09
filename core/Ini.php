@@ -8,7 +8,7 @@ require_once 'DbConnection.php';
 
 require_once 'Constants.php';
 
-require_once'settings.php';
+require_once 'settings.php';
 
 require_once 'Connection.php';
 

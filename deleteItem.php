@@ -1,8 +1,9 @@
 <?php 
 require_once ('core/Ini.php');
+require_once ('model/initClasses.php');
 
 
-$op = new Connection();
+$op = new Item();
 $item = $op->getItemByUUID($_GET['uuid']);
 $item = $item[0];
 

@@ -1,5 +1,6 @@
 <?php 
 require_once ('core/Ini.php');
+require_once ('model/initClasses.php');
 ?>
 
 <!DOCTYPE html>
@@ -26,13 +27,15 @@ require_once ('core/Ini.php');
 
 <?php 
 
-$op = new Connection();
-$item = $op->getItemByUUID($_GET['uuid']);
+$ItemDb = new Item();
+echo "Creada la classe ItemDb";
+$item = $ItemDb->getItemByUUID($_GET['uuid']);
 $item = $item[0];
-//print_r($item);
+print_r($item);
 
-$itemPhotos = $op->getItemImages($_GET['uuid']);
-//print_r($itemPhotos)
+$ImageDb = new Image();
+$itemPhotos = $ImageDb->getItemImages($_GET['uuid']);
+print_r($itemPhotos);
 
 $favoriteImageUUID = $item['star_image'];
 

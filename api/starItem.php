@@ -5,8 +5,9 @@ header('Content-Type: application/json');
 // header('Content-Type: text/html; charset=utf-8');
 
 require_once ('../core/Ini.php');
+require_once('../model/initClasses.php');
 
-$op = new Connection();
+$op = new Item();
 
 $uuidItem = $_POST['uuidItem'];
 $uuidImage = $_POST['uuidImage'];

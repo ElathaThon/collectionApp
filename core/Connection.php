@@ -22,6 +22,10 @@ class Connection {
         
     }
 
+    function test(){
+        return "Hola, soc la classe Connection!!";
+    }
+
 
     function getConnection(){
         return $this->conn;
@@ -32,7 +36,7 @@ class Connection {
         echo '<META http-equiv="refresh" content="'.$seconds.';URL='.$url.'">';
     }
 
-
+/*
     function createNewItem($uuid, $name, $description){
         $sql = "INSERT INTO ".Constants::$ITEM_TABLE." (".Constants::$ITEM_UUID.", ".Constants::$ITEM_NAME.", ".Constants::$ITEM_DESCRIPTION.") VALUES (?, ?, ?)";
         $sth = $this->dbh->prepare($sql);
@@ -88,7 +92,19 @@ class Connection {
         }
     }
 
+    function updateItem($uuidItem, $name, $description) {
+        $sql = "UPDATE ".Constants::$ITEM_TABLE." SET ".Constants::$ITEM_NAME." = ?, ".Constants::$ITEM_DESCRIPTION." = ? WHERE ".Constants::$ITEM_UUID." = ?";
+        $sth = $this->dbh->prepare($sql);
+        if ($sth->execute(array($name, $description, $uuidItem))){
+            return "ok";
+        } else {
+            return "ko";
+        }
+    }
 
+
+*/
+/*
     function createNewImage($uuid, $uuidItem, $url){
         $sql = "INSERT INTO ".Constants::$IMAGE_TABLE." (".Constants::$IMAGE_UUID.", ".Constants::$IMAGE_UUID_ITEM.", ".Constants::$IMAGE_URL.") VALUES (?,?,?)";
         $sth = $this->dbh->prepare($sql);
@@ -140,6 +156,7 @@ class Connection {
 
     function getUrlImage($uuidImage) {
         $sql = "SELECT ".Constants::$IMAGE_URL." FROM ".Constants::$IMAGE_TABLE." WHERE ".Constants::$IMAGE_UUID." = ?" ;
+        //echo "Connection->getUrlImage: " . $sql;
         $sth = $this->dbh->prepare($sql);
         $sth->execute(array($uuidImage));
         $rawdata = array();
@@ -151,15 +168,7 @@ class Connection {
     }
 
 
-    function updateItem($uuidItem, $name, $description) {
-        $sql = "UPDATE ".Constants::$ITEM_TABLE." SET ".Constants::$ITEM_NAME." = ?, ".Constants::$ITEM_DESCRIPTION." = ? WHERE ".Constants::$ITEM_UUID." = ?";
-        $sth = $this->dbh->prepare($sql);
-        if ($sth->execute(array($name, $description, $uuidItem))){
-            return "ok";
-        } else {
-            return "ko";
-        }
-    }
+
 
     function deleteImage($uuid){
         $sql = "DELETE FROM ".Constants::$IMAGE_TABLE." WHERE ".Constants::$IMAGE_UUID." = ?";
@@ -171,7 +180,7 @@ class Connection {
         }
     }
 
-
+*/
 /*
     function userExists($uuid){
         $sql = "SELECT * FROM ".Constants::$USER_TABLE." WHERE ".Constants::$USER_UUID." = ?" ;
