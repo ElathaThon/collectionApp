@@ -6,7 +6,7 @@ function loadList(){
     
     $.ajax({
         type: "POST",
-        url: 'api/getAllItems.php',
+        url: 'controller/getItemList.php',
         data: "",
         success: function(data) {
             console.log(data);
@@ -34,6 +34,30 @@ function loadList(){
                     <span class="pull-right button-group">
                         <a href="itemDetail.php?uuid=`+value.uuid+`" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
                         <a href="deleteItem.php?uuid=`+value.uuid+`" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                    </span>
+                </li>
+                `
+    
+            })
+
+
+            $.each(data.itemsPublic, function(index, value){
+
+                var imageSpan = '<img class="imageList" src="images/default.jpeg">';
+
+                if (value.url != null) {
+                    console.log("Si que te image!!" + value.url)
+                    imageSpan = '<img class="imageList" src="images/' + value.url + '">';
+                }
+
+                stringList = stringList + `
+                <li class="list-group-item clearfix">
+                    `
+                    + imageSpan +
+                    `
+                    `+value.name+` : `+value.description+`
+                    <span class="pull-right button-group">
+                        <a href="itemDetail.php?uuid=`+value.uuid+`" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> View</a> 
                     </span>
                 </li>
                 `
