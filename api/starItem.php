@@ -17,8 +17,8 @@ $starItem = $op->updateStarItemImage($uuidItem, $uuidImage);
 if ($starItem != ""){
     $arr->code = "1";
     $arr->ok = "ok";
-    //$arr->uuidItem = $uuidItem;
-    //$arr->uuidImage = $uuidImage;
+    $arr->uuidItem = $uuidItem;
+    $arr->uuidImage = $uuidImage;
     $arr->starItem = $starItem;
 } else {
     $arr->code = "-1";

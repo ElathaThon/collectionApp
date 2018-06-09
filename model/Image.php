@@ -51,16 +51,6 @@ function createNewImage($uuid, $uuidItem, $url){
         return $jSON;
     }
 
-    function updateStarItemImage($uuidItem, $uuidImage) {
-        $sql = "UPDATE ".$this::$ITEM_TABLE." SET ".$this::$ITEM_STAR_IMAGE." = ? WHERE ".$this::$ITEM_UUID." = ?";
-        $sth = $this->dbh->prepare($sql);
-        if ($sth->execute(array($uuidImage, $uuidItem))){
-            return "ok";
-        } else {
-            return "ko";
-        }
-    }
-
 
     function getFavoriteImage($uuidItem) {
         //$sql = "SELECT ".$this::$IMAGE_TABLE.".".$this::$IMAGE_URL." FROM ".$this::$IMAGE_TABLE." INNER JOIN ".$this::$ITEM_TABLE." ON ".$this::$ITEM_TABLE.".".$this::$ITEM_STAR_IMAGE." = ".$this::$IMAGE_TABLE.".".$this::$IMAGE_UUID." WHERE ".$this::$ITEM_TABLE.".".$this::$ITEM_UUID." = ?" ;

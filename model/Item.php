@@ -113,6 +113,16 @@ class Item {
         }
     }
 
+    function updateStarItemImage($uuidItem, $uuidImage) {
+        $sql = "UPDATE ".$this::$ITEM_TABLE." SET ".$this::$ITEM_STAR_IMAGE." = ? WHERE ".$this::$ITEM_UUID." = ?";
+        $sth = $this->dbh->prepare($sql);
+        if ($sth->execute(array($uuidImage, $uuidItem))){
+            return "ok";
+        } else {
+            return "ko";
+        }
+    }
+
 
     /** Usefull simple functions */
     function getConnection(){ return $this->conn; }

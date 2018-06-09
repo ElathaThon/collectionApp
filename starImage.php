@@ -1,6 +1,7 @@
 <?php 
 
 require_once ('core/Ini.php');
+require_once ('model/initClasses.php');
 
 ?>
 
@@ -32,7 +33,7 @@ $description =$_POST['description'];
 $uuid = $_POST['uuid'];
 //echo "> Dades: [name: " . $name . ", description: " . $description . ", uuid: " . $uuid . "]";
 
-$op = new Connection();
+$op = new Image();
 $itemPhotos = $op->getItemImages($_POST['uuid']);
 //print_r($itemPhotos);
 
