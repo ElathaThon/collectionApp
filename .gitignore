@@ -3,6 +3,7 @@ out/
 *.iml
 
 core/settings.php
+core/DbConnection.php
 
 *.jpg
 *.jpeg
