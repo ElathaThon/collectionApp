@@ -9,5 +9,3 @@ core/DbConnection.php
 *.jpeg
 *.png
 *.gif
-
-core/Constants.php
