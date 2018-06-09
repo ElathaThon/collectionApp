@@ -1,4 +1,6 @@
 <?php 
+session_start();
+
 require_once ('core/Ini.php');
 require_once ('model/initClasses.php');
 ?>
@@ -24,7 +26,7 @@ require_once ('model/initClasses.php');
 
 </head>
 <body>
-
+<?php //echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>'; ?>
 <?php 
 
 $ItemDb = new Item();
@@ -35,6 +37,7 @@ $item = $item[0];
 
 $ImageDb = new Image();
 $itemPhotos = $ImageDb->getItemImages($_GET['uuid']);
+//echo "<br>----<br>";
 //print_r($itemPhotos);
 
 $favoriteImageUUID = $item['star_image'];
@@ -82,9 +85,13 @@ function save() {
                     <div class="row">
                         <button class="btn btn-danger right-back" style="width: 80px;" onclick="goBack()">Go Back</button>
                     </div>
-                    <div class="row" style="margin-top: 15px;">
-                        <button class="btn btn-primary right-back" style="width: 80px;" onclick="save()">Guardar</button>
-                    </div>
+                
+                    <?php if ($_SESSION['userUUID'] == $item['userID']) { ?>
+                        <div class="row" style="margin-top: 15px;">
+                            <button class="btn btn-primary right-back" style="width: 80px;" onclick="save()">Guardar</button>
+                        </div>
+                    <?php } ?>
+
                 </div>
 
 
@@ -110,26 +117,29 @@ function save() {
                 </div>
             </div>
             
+
+
+
             <?php 
-            
-            if (empty($itemPhotos)) {
-                 $formSummit = '<div class="row">
-                    <div class="col-sm-12 form-group">
-                        <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">Afegir una imatge</button>
-                    </div>
-                </div>';
+            if ($_SESSION['userUUID'] == $item['userID']) {
+                if (empty($itemPhotos)) {
+                     $formSummit = '<div class="row">
+                        <div class="col-sm-12 form-group">
+                            <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">Afegir una imatge</button>
+                        </div>
+                    </div>';
 
-            } else {
-                $formSummit = '<div class="row">
-                    <div class="col-sm-12 form-group">
-                        <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">Afegir una imatge</button>
-                        <button class="btn btn-lg btn-warning btn-block" id="btnFavorite" formaction="starImage.php"><i class="far fa-star"></i>  Favorite </button>
-                    </div>
-                </div>';
+                } else {
+                    $formSummit = '<div class="row">
+                        <div class="col-sm-12 form-group">
+                            <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">Afegir una imatge</button>
+                            <button class="btn btn-lg btn-warning btn-block" id="btnFavorite" formaction="starImage.php"><i class="far fa-star"></i>  Favorite </button>
+                        </div>
+                    </div>';
+                }
+
+                echo $formSummit;
             }
-
-            echo $formSummit;
-
             ?>
 
         </form>
@@ -150,29 +160,39 @@ function save() {
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
 	        <?php
-	        for ($i = 0; $i < sizeof($itemPhotos); $i++){
-                $uuidImage =  $itemPhotos[$i]['uuid'];
-                if ($favoriteImageUUID == $uuidImage) {
-                    echo '
-                    <div class="gallery favorite img-wrap">
-                        <span class="close" onclick="deleteImage(\''.$uuidImage.'\')">&times;</span>
-                        <!--<a onclick="imageSelected(\''.$uuidImage.'\')" href="javascript:void(0);">-->
-                            <img src="images/'.$itemPhotos[$i]['url'].'" width="300" height="300" data-id="'.$uuidImage.'">
-                        <!--</a>-->
-                    </div>';
-                } else {
-	               echo '
-    	            <div class="gallery img-wrap">
-                        <span class="close" onclick="deleteImage(\''.$uuidImage.'\')">&times;</span>
-    					<!--<a onclick="imageSelected(\''.$uuidImage.'\')" href="javascript:void(0);">-->
-    					    <img src="images/'.$itemPhotos[$i]['url'].'" width="300" height="200" data-id="'.$uuidImage.'">
-    				 	<!--</a>-->
-    				</div>';
-                }
 
+            if ($_SESSION['userUUID'] == $item['userID']) {
+    	        for ($i = 0; $i < sizeof($itemPhotos); $i++){
+                    $uuidImage =  $itemPhotos[$i]['uuid'];
+                    if ($favoriteImageUUID == $uuidImage) {
+                        echo '
+                        <div class="gallery favorite img-wrap">
+                            <span class="close" onclick="deleteImage(\''.$uuidImage.'\')">&times;</span>
+                            <a onclick="imageSelected(\''.$uuidImage.'\')" href="images/'.$itemPhotos[$i]['url'].'" target="_blank">
+                                <img src="images/'.$itemPhotos[$i]['url'].'" width="300" height="300" data-id="'.$uuidImage.'">
+                            </a>
+                        </div>';
+                    } else {
+    	               echo '
+        	            <div class="gallery img-wrap">
+                            <span class="close" onclick="deleteImage(\''.$uuidImage.'\')">&times;</span>
+        					<a onclick="imageSelected(\''.$uuidImage.'\')" href="images/'.$itemPhotos[$i]['url'].'" target="_blank">
+        					    <img src="images/'.$itemPhotos[$i]['url'].'" width="300" height="200" data-id="'.$uuidImage.'">
+        				 	</a>
+        				</div>';
+                    }
 
+    	        }
 
-	        }
+            } else {
+                for ($i = 0; $i < sizeof($itemPhotos); $i++){
+                        echo '
+                        <div class="gallery img-wrap">
+                                <img src="images/'.$itemPhotos[$i]['url'].'" width="300" height="300" data-id="'.$uuidImage.'">
+                        </div>';
+                    }
+            }
+
 	        ?>
 	</div>
 </div>
