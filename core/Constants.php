@@ -6,15 +6,7 @@
 */
 class Constants{
 
-
-	/*
-	public static $HOST = "localhost";
-	public static $DATABASE = "topoinvejlsqlabc";
-	public static $DB_USER_NAME = "root";
-	public static $DB_PASSWORD = "";
-	*/
-	
-	public static $ITEM_TABLE = "colapp_item";
+	public static $ITEM_TABLE = "COLAPP_item";
 	public static $ITEM_ID = "id";
 	public static $ITEM_UUID = "uuid";
 	public static $ITEM_NAME = "name";
@@ -23,13 +15,13 @@ class Constants{
 	public static $ITEM_USER_ID = "userID";
 	public static $ITEM_PUBLIC = "public";
 
-	public static $IMAGE_TABLE = "colapp_image";
+	public static $IMAGE_TABLE = "COLAPP_image";
 	public static $IMAGE_ID = "id";
 	public static $IMAGE_UUID = "uuid";
 	public static $IMAGE_UUID_ITEM = "uuidItem";
 	public static $IMAGE_URL = "url";
 	
-	public static $USER_TABLE = "colapp_user";
+	public static $USER_TABLE = "COLAPP_user";
 	public static $USER_ID = "id";
 	public static $USER_UUID = "uuid";
 	public static $USER_GENDER = "gender";
