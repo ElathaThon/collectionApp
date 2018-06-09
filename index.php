@@ -7,6 +7,8 @@ require_once ('model/initClasses.php');
 
 $login_url = 'https://accounts.google.com/o/oauth2/v2/auth?scope=' . urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me') . '&redirect_uri=' . urlencode(CLIENT_REDIRECT_URL) . '&response_type=code&client_id=' . CLIENT_ID . '&access_type=online';
 
+$logout_url = 'controller/logout.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -50,10 +52,21 @@ if (false) {
 
     <div class="omb_login pull-right">
     <div class="row omb_row-sm-offset-3 omb_socialButtons">
+            
+            <?php if ($_SESSION['logged_in'] != 1) { ?>
+                
             <a href="<?= $login_url ?>" class="btn btn-lg btn-block omb_btn-google">
                 <i class="fa fa-google-plus visible-xs"></i>
                 <span class="hidden-xs">Login Google+ <i class="fab fa-google-plus"></i></span>
             </a>
+
+            <?php } else { ?>
+                <a href="<?= $logout_url ?>" class="btn btn-lg btn-block omb_btn-google">
+                <i class="fa fa-google-plus visible-xs"></i>
+                <span class="hidden-xs">Logout</span>
+            </a>
+            <?php } ?>
+
         </div>
     </div>
 
@@ -69,7 +82,7 @@ if (false) {
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
 
-        <h1><?php echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>'; ?></h1>
+        <h1><?php //echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>'; ?></h1>
 
         <h2>New item</h2>
         <p>Crear un nou item</p>
