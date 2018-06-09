@@ -3,12 +3,13 @@ ob_start();
 //http://usefulangle.com/post/9/google-login-api-with-php-curl
 session_start();
 require_once('../core/Ini.php');
+require_once('../model/initClasses.php');
 
 // Holds the Google application Client Id, Client Secret and Redirect Url
 require_once('../core/settings.php');
 
 // Holds the various APIs involved as a PHP class. Download this class at the end of the tutorial
-require_once('google-login-api.php');
+require_once('../api/google-login-api.php');
 
 // Google passes a parameter 'code' in the Redirect Url
 if(isset($_GET['code'])) {
@@ -37,15 +38,15 @@ if(isset($_GET['code'])) {
 
 
         // Store the user information in the DDBB
-        $op = new Connection();
+        $userDb = new User();
 
-        if (!($op->userExists($user_info['id']))) { //si el user no exsteix, el afegirem a la base de dades
+        if (!($userDb->userExists($user_info['id']))) { //si el user no exsteix, el afegirem a la base de dades
             $uuid = $user_info['id'];
             $gender = $user_info['gender']; 
             $name = $user_info['displayName'];
             $email = $user_info['emails'][0]['value'];
        
-            $op->newUser($uuid, $gender, $name, $email);
+            $userDb->newUser($uuid, $gender, $name, $email);
         }
        
         // You may now want to redirect the user to the home page of your website

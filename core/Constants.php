@@ -21,13 +21,7 @@ class Constants{
 	public static $IMAGE_UUID_ITEM = "uuidItem";
 	public static $IMAGE_URL = "url";
 	
-	public static $USER_TABLE = "COLAPP_user";
-	public static $USER_ID = "id";
-	public static $USER_UUID = "uuid";
-	public static $USER_GENDER = "gender";
-	public static $USER_NICK = "name";
-	public static $USER_EMAIL = "email";
-	public static $USER_LAST_LOGIN = "lastlogin";
+
 
 }
 

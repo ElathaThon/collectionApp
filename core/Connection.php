@@ -172,6 +172,7 @@ class Connection {
     }
 
 
+/*
     function userExists($uuid){
         $sql = "SELECT * FROM ".Constants::$USER_TABLE." WHERE ".Constants::$USER_UUID." = ?" ;
         
@@ -213,20 +214,14 @@ class Connection {
         } 
     }
 
-
+*/
 
 
 
 
     function getDateStamp() {
 
-    $date_array = getdate();
-    $formated_date .= $date_array['mday'] . "/";
-    $formated_date .= $date_array['mon'] . "/";
-    $formated_date .= $date_array['year'];
-    //return $formated_date;
-
-    return date("d/m/y G:i:s");
+        return date("d/m/y G:i:s");
 
     }
 
