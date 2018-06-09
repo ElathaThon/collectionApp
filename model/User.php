@@ -18,6 +18,12 @@ class User {
 
     private $dbh = NULL;
 
+	/* TODO: Mes endevant Connection com singletion i li passem el conection per parametre al construir
+   // constructor with $db as database connection
+    public function __construct($db){
+        $this->conn = $db;
+    }*/
+    
     function User(){
 
         $dbHost = DbConnection::$HOST;
@@ -39,7 +45,7 @@ class User {
     function userExists($uuid){
         $sql = "SELECT * FROM ".$this::$USER_TABLE." WHERE ".$this::$USER_UUID." = ?" ;
         //echo "userExists: " . $sql;
-        
+
         $sth = $this->dbh->prepare($sql);
         $sth->execute(array($uuid));
 

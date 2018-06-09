@@ -6,10 +6,10 @@ require_once('../core/Ini.php');
 require_once('../model/initClasses.php');
 
 // Holds the Google application Client Id, Client Secret and Redirect Url
-require_once('../core/settings.php');
+//require_once('../core/settings.php');
 
 // Holds the various APIs involved as a PHP class. Download this class at the end of the tutorial
-require_once('../api/google-login-api.php');
+require_once('google-login-api.php');
 
 // Google passes a parameter 'code' in the Redirect Url
 if(isset($_GET['code'])) {
