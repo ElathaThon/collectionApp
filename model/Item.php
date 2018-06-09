@@ -47,11 +47,11 @@ class Item {
 
 
     /**
-     * Return an of all the items in the DDBB
+     * Return an of all the items in the DDBB that are public
      * @return array
      */
     function getAllItems(){
-        $sql = "SELECT * FROM ".$this::$ITEM_TABLE;
+        $sql = "SELECT * FROM ".$this::$ITEM_TABLE ." WHERE ".$this::$ITEM_PUBLIC ." = 1";
         $sth = $this->dbh->prepare($sql);
 
         $sth->execute(array());
@@ -161,6 +161,59 @@ class Item {
         }
     }
 
+
+    /**
+     * Return all the items that are from this user
+     * @param $uuidUser
+     * @return array
+     */
+    function getItemsFromUserUUID($uuidUser){
+        $sql = "SELECT * FROM ".$this::$ITEM_TABLE." WHERE ".$this::$ITEM_USER_ID." = ?";
+        $sth = $this->dbh->prepare($sql);
+        $sth->execute(array($uuidUser));
+
+        $i = 0;
+        $rawdata = array();
+        foreach ($sth->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $rawdata[] = $row;
+            
+            $uuidImage = $row['star_image'];
+            $image = $this->image->getUrlImage($uuidImage);
+            $rawdata[$i]['url'] = $image;
+            
+            $i++;
+        }
+        $jSON = $rawdata;
+        return $jSON;
+    }
+
+    /**
+     * Return the items in the database that are public, without the user public items
+     * @param $uuidUser
+     * @return array
+     */
+    function getPublicItemsWhitoutUserItems($uuidUser){
+        $sql = "SELECT * FROM ".$this::$ITEM_TABLE." WHERE (NOT ".$this::$ITEM_USER_ID." = ? ) AND ".$this::$ITEM_PUBLIC." = 1";
+        $sth = $this->dbh->prepare($sql);
+        $sth->execute(array($uuidUser));
+        
+        $i = 0;
+        $rawdata = array();
+        foreach ($sth->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $rawdata[] = $row;
+            
+            $uuidImage = $row['star_image'];
+            $image = $this->image->getUrlImage($uuidImage);
+            $rawdata[$i]['url'] = $image;
+            
+            $i++;
+        }
+        $jSON = $rawdata;
+        return $jSON;
+    }
+
+
+    
 
     /** Usefull simple functions */
     function getConnection(){ return $this->conn; }
