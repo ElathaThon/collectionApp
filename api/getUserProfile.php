@@ -1,4 +1,5 @@
 <?php
+ob_start();
 //http://usefulangle.com/post/9/google-login-api-with-php-curl
 session_start();
 require_once('../core/Ini.php');
@@ -43,13 +44,19 @@ if(isset($_GET['code'])) {
             $gender = $user_info['gender']; 
             $name = $user_info['displayName'];
             $email = $user_info['emails'][0]['value'];
-
+       
             $op->newUser($uuid, $gender, $name, $email);
         }
-
-
+       
         // You may now want to redirect the user to the home page of your website
-        header('Location: ../index.php');
+        //header('Location: ../index.php');
+
+        $host  = $_SERVER['HTTP_HOST'];
+        $uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+        $extra = '../index.php';  // change accordingly
+        
+        header("Location: http://$host$uri/$extra");
+
     }
     catch(Exception $e) {
         echo $e->getMessage();
