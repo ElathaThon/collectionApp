@@ -1,12 +1,13 @@
 <?php 
 require_once ('core/Ini.php');
+require_once ('model/initClasses.php');
  ?>
 
 
  <!DOCTYPE html>
  <html>
  <head>
- 	<title>Upliading images....</title>
+ 	<title>Uploading images....</title>
 
 
 <!-- Latest compiled and minified CSS -->
@@ -24,7 +25,7 @@ require_once ('core/Ini.php');
     <div class="row">
 	    <div class="col-lg-12">
 	        <?php
-	        $op = new Connection();
+	        $op = new Image();
 
 	        extract($_POST);
 	        $error=array();

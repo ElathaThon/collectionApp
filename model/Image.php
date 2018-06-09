@@ -104,6 +104,13 @@ function createNewImage($uuid, $uuidItem, $url){
         }
     }
 
+
+
+    /** Usefull simple functions */
+    function getConnection(){ return $this->conn; }
+    function getDateStamp() { return date("d/m/y G:i:s"); }
+    function redirectTo($url,$seconds){ echo '<META http-equiv="refresh" content="'.$seconds.';URL='.$url.'">'; }
+
 }
 
 
