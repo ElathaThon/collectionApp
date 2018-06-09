@@ -28,14 +28,14 @@ require_once ('model/initClasses.php');
 <?php 
 
 $ItemDb = new Item();
-echo "Creada la classe ItemDb";
+
 $item = $ItemDb->getItemByUUID($_GET['uuid']);
 $item = $item[0];
-print_r($item);
+//print_r($item);
 
 $ImageDb = new Image();
 $itemPhotos = $ImageDb->getItemImages($_GET['uuid']);
-print_r($itemPhotos);
+//print_r($itemPhotos);
 
 $favoriteImageUUID = $item['star_image'];
 
