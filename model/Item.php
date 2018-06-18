@@ -10,6 +10,7 @@ class Item {
     private static $ITEM_STAR_IMAGE = "star_image";
     private static $ITEM_USER_ID = "userID";
     private static $ITEM_PUBLIC = "public";
+    private static $ITEM_ID_TYPE = "idType";
 
     //Objectes de la classe
     private $image = NULL; 
@@ -74,6 +75,33 @@ class Item {
 
 
     /**
+     * Return an of all the items in the DDBB that are public and with the given type
+     * @return array
+     */
+    function getAllItemsWithType($idType){
+        $sql = "SELECT * FROM ".$this::$ITEM_TABLE ." WHERE ".$this::$ITEM_PUBLIC ." = 1 AND ".$this::$ITEM_ID_TYPE ." = ?";
+        $sth = $this->dbh->prepare($sql);
+
+        $sth->execute(array($idType));
+        $rawdata = array();
+        $i = 0;
+        
+        foreach ($sth->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $rawdata[] = $row;
+            $uuidImage = $row['star_image'];
+        
+            $image = $this->image->getUrlImage($uuidImage);
+            $rawdata[$i]['url'] = $image;
+
+            //print_r($rawdata);
+            $i++;
+        }
+        $jSON = $rawdata;
+        return $jSON;
+    }
+
+
+    /**
      * Update the item of the given uuid in the DDBB
      * @param $uuidItem
      * @param $name
@@ -103,6 +131,23 @@ class Item {
         $sql = "INSERT INTO ".$this::$ITEM_TABLE." (".$this::$ITEM_UUID.", ".$this::$ITEM_NAME.", ".$this::$ITEM_DESCRIPTION.") VALUES (?, ?, ?)";
         $sth = $this->dbh->prepare($sql);
         if ($sth->execute(array($uuid,$name,$description))){
+            return "ok";
+        } else {
+            return "ko";
+        }
+    }
+
+    /**
+     * Create a new item in the DDBB
+     * @param $uuid
+     * @param $name
+     * @param $description
+     * @return string
+     */
+    function createNewItemWithType($uuid, $name, $description, $idType){
+        $sql = "INSERT INTO ".$this::$ITEM_TABLE." (".$this::$ITEM_UUID.", ".$this::$ITEM_NAME.", ".$this::$ITEM_DESCRIPTION.", ".$this::$ITEM_ID_TYPE .") VALUES (?, ?, ?, ?)";
+        $sth = $this->dbh->prepare($sql);
+        if ($sth->execute(array($uuid,$name,$description,$idType))){
             return "ok";
         } else {
             return "ko";
@@ -171,6 +216,32 @@ class Item {
         $sql = "SELECT * FROM ".$this::$ITEM_TABLE." WHERE ".$this::$ITEM_USER_ID." = ?";
         $sth = $this->dbh->prepare($sql);
         $sth->execute(array($uuidUser));
+
+        $i = 0;
+        $rawdata = array();
+        foreach ($sth->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $rawdata[] = $row;
+            
+            $uuidImage = $row['star_image'];
+            $image = $this->image->getUrlImage($uuidImage);
+            $rawdata[$i]['url'] = $image;
+            
+            $i++;
+        }
+        $jSON = $rawdata;
+        return $jSON;
+    }
+
+    /**
+     * Return all the items that are from this user
+     * @param $uuidUser
+     * @param $idType
+     * @return array
+     */
+    function getItemsFromUserUUIDWithType($uuidUser, $idType){
+        $sql = "SELECT * FROM ".$this::$ITEM_TABLE." WHERE ".$this::$ITEM_USER_ID." = ? AND ".$this::$ITEM_ID_TYPE ." = ?";
+        $sth = $this->dbh->prepare($sql);
+        $sth->execute(array($uuidUser,$idType));
 
         $i = 0;
         $rawdata = array();

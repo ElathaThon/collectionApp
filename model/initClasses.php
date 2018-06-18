@@ -5,7 +5,10 @@ error_reporting(0);
 
 require_once 'Connection.php';
 require_once 'User.php';
+
 require_once 'Item.php';
+require_once 'Cloth.php';
+
 require_once 'Image.php';
 
  ?>
